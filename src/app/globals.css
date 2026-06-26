@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #060b0d; /* Ultra dark teal-black */
+  --foreground: #F1F6F4; /* Arctic Powder */
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-sans), ui-sans-serif, system-ui;
+  overflow-x: hidden;
+  letter-spacing: -0.01em;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #060b0d;
+}
+::-webkit-scrollbar-thumb {
+  background: #114C5A/40;
+  border-radius: 9px;
+  border: 1px solid rgba(241, 246, 244, 0.05);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF9932/60;
+}
+
+/* Layout Backdrops & Mesh Gradients */
+.bg-mesh-dark {
+  background-color: #060b0d;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(17, 76, 90, 0.18) 0px, transparent 50%), 
+    radial-gradient(at 100% 0%, rgba(255, 153, 50, 0.04) 0px, transparent 50%), 
+    radial-gradient(at 50% 100%, rgba(17, 76, 90, 0.15) 0px, transparent 50%);
+}
+
+.bg-grid-premium {
+  background-size: 60px 60px;
+  background-image: 
+    linear-gradient(to right, rgba(241, 246, 244, 0.012) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(241, 246, 244, 0.012) 1px, transparent 1px);
+  mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, black 30%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, black 30%, transparent 95%);
+}
+
+/* Glassmorphism Panels */
+.glass-panel-premium {
+  background: rgba(9, 18, 22, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(241, 246, 244, 0.04);
+  box-shadow: 0 10px 40px -15px rgba(0, 0, 0, 0.7);
+}
+
+/* Vercel-style hover glowing border card */
+.glow-card {
+  position: relative;
+  background: rgba(9, 18, 22, 0.45);
+  border-radius: 24px;
+  border: 1px solid rgba(241, 246, 244, 0.04);
+  overflow: hidden;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glow-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.2px;
+  background: radial-gradient(
+    300px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+    rgba(255, 200, 1, 0.3),
+    rgba(255, 153, 50, 0.06) 40%,
+    transparent 70%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.glow-card:hover::before {
+  opacity: 1;
+}
+
+.glow-card:hover {
+  background: rgba(17, 76, 90, 0.08);
+  box-shadow: 0 15px 45px -15px rgba(0, 0, 0, 0.5);
+}
+
+/* Noise overlay */
+.noise-overlay-premium {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.015'/%3E%3C/svg%3E");
+}
+
+/* Text Gradient Highlights */
+.text-gradient-premium {
+  background: linear-gradient(135deg, #F1F6F4 20%, #D9E8E2 50%, #FFC801 85%, #FF9932 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Premium Button Glow border */
+.glow-border-btn-premium {
+  position: relative;
+  overflow: hidden;
+}
+.glow-border-btn-premium::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(to bottom right, rgba(255, 200, 1, 0.5), rgba(255, 153, 50, 0.1));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Infinite Brand Marquee */
+@keyframes marquee-premium {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee-premium {
+  display: flex;
+  width: max-content;
+  animation: marquee-premium 45s linear infinite;
+}
+
+/* Custom transitions and properties */
+.transition-layout-reflow {
+  transition: all 350ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-micro-interaction {
+  transition: all 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
